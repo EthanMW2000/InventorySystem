@@ -1,0 +1,4 @@
+﻿  InventorySystemDriver.cpp
+C:\Users\ethan\Desktop\Programming Projects\Inventory System\InventorySystemDriver.cpp(71,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\ethan\Desktop\Programming Projects\Inventory System\InventorySystemDriver.cpp(89,20): warning C4018: '<': signed/unsigned mismatch
+  Inventory System.vcxproj -> C:\Users\ethan\Desktop\Programming Projects\Inventory System\Debug\Inventory System.exe

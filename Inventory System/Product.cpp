@@ -11,7 +11,7 @@ File contains all the definitions of the member functions of class Product.
 Product::Product()
 {
 	itemName = "NoName";
-	itemID = 0;
+	itemID = "NoID";
 	itemQty = 0;
 	itemPrice = 0.00;
 }
@@ -23,7 +23,7 @@ Constructor with parameters that are assigned to itemName, itemID, and itemQty.
 @param qty to be assigned to private itemQty.
 @param priceType to be assigned to private itemType.
 */
-Product::Product(string name, int ID, int qty, double price, string priceType)
+Product::Product(string name, string ID, int qty, double price, string priceType)
 {
 	itemName = name;
 	itemID = ID;
@@ -39,7 +39,7 @@ void Product::SetItemName(string name)
 }
 
 //Sets parameter ID to private itemID.
-void Product::SetItemID(int ID)
+void Product::SetItemID(string ID)
 {
 	itemID = ID;
 }
@@ -69,7 +69,7 @@ string Product::GetItemName()
 }
 
 //Returns itemID
-int Product::GetItemID()
+string Product::GetItemID()
 {
 	return itemID;
 }
@@ -102,4 +102,48 @@ void Product::AddItemQty(int qty_to_add)
 void Product::SubtractItemQty(int qty_to_subtract)
 {
 	itemQty -= qty_to_subtract;
+}
+
+bool Product::operator<(const Product& products) const
+{
+	return (itemName < products.itemName);
+}
+
+bool Product::operator==(const Product& products) const
+{
+	return (itemName == products.itemName);
+}
+
+//Returns whether or not a searched ID matches an itemName.
+bool Product::SearchName(string ID)
+{
+
+	int position;
+	position = itemName.find(ID);
+
+	if (position > -1)
+		return true;
+	else if (IgnoreCase(ID))
+	{
+		return true;
+	}
+	else
+		return false;
+}
+
+//Works with the SearchName function to determine whether the searched ID is in a different case.
+bool Product::IgnoreCase(string ID)
+{
+	int position;
+	string itemNameUpperCase = itemName;
+	
+	std::transform(itemNameUpperCase.begin(), itemNameUpperCase.end(), itemNameUpperCase.begin(), ::toupper);
+	std::transform(ID.begin(), ID.end(), ID.begin(), ::toupper);
+
+	position = itemNameUpperCase.find(ID);
+
+	if (position > -1)
+		return true;
+	else
+		return false;
 }
